@@ -8,14 +8,16 @@ public class HashMapNode<K extends Comparable<K>, V> {
         this.value = value;
     }
 
+    //get methods
     public K getKey(){
-        return this.key;
+        return key;
     }
 
     public V getValue(){
-        return this.value;
+        return value;
     }
 
+    //set method
     public void setValue(V newValue){
         this.value = newValue;
     }
