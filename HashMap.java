@@ -13,19 +13,19 @@ public class HashMap<K extends Comparable<K>, V> {
 
     // construct a HashMap with 4000 places and given hash parameters
     public HashMap(int multiplier, int modulus){
-        this.items = (HashMapNodes<K, V>[]) new hashMapNode[4000];
         this.hashMapSize = 4000;
         this.multiplier = multiplier;
         this.modulus = modulus;
+        this.items = (HashMapNode<K, V>[]) new HashMapNode[hashMapSize];
     }
 
 
     // construct a HashMap with given capacity and given hash parameters
     public HashMap(int hashMapSize, int multiplier, int modulus){
-        this.items = (HashMapNode<K, V>[]) new HashMapNode[hashMapSize];
         this.hashMapSize = hashMapSize;
         this.multiplier = multiplier;
         this.modulus = modulus;
+        this.items = (HashMapNode<K, V>[]) new HashMapNode[hashMapSize];
     }
 
 
@@ -62,7 +62,7 @@ public class HashMap<K extends Comparable<K>, V> {
         int count = index;
 
         if(items[index] == null){
-            items[index] = HashMapNode<>(key, value);
+            items[index] = new HashMapNode<>(key, value);
             return null;
         }
 
@@ -111,7 +111,7 @@ public class HashMap<K extends Comparable<K>, V> {
 
         //do a check to see if the key is the one we're looking for
         if(!entry.key.equals(key)){
-            for(int i=0; i<hashMapSize: i++){
+            for(int i=0; i<hashMapSize; i++){
                 count++;
                 if(count>=hashMapSize){
                     count=0;
@@ -127,7 +127,7 @@ public class HashMap<K extends Comparable<K>, V> {
     public V remove(K key){
         int index = hash(key) % hashMapSize;
         int count = index;
-        HashMapNode(K,V) entry=items[index];
+        HashMapNode<K, V> entry = items[index];
 
         if(entry==null){
             return null;
@@ -172,5 +172,4 @@ public class HashMap<K extends Comparable<K>, V> {
         totalCollisions=0;
         maxCollisions=0;
     }
-
 }

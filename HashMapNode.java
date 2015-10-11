@@ -1,6 +1,6 @@
 public class HashMapNode<K extends Comparable<K>, V> {
-    private K key;
-    private V value;
+    public K key;
+    public V value;
 
 
     public HashMapNode(K key, V value){
