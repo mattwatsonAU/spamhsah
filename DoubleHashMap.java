@@ -11,10 +11,11 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
     public int multiplier;
     public int modulus2;
     public int hashMapSize;
-    private int putFailureCount=0;
-    private int Collisions=0;
+    private int putCollisions=0;
+    private int putFailures=0;
     private int totalCollisions=0;
     private int maxCollisions=0;
+    HashMapNode defunctNode=new HashMapNode<>(null, null);
 
     // updated construction
     // construct a HashMap with 4000 places and given hash parameters
@@ -68,64 +69,9 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
     }
 
     public V put(K key, V value){
-        int index=hash(key)%hashMapSize;
-        int count=index;
-        int count2=index;
-
-        if(items[index]==null){
-            items[index]=new HashMapNode<>(key, value);
-            return null;
+        for(int i=0; i<hashMapSize; i++){
+            if(items[index])
         }
-
-        if(items[count].getKey().equals(key)){
-            V original=items[count].getValue();
-            items[count].setValue(value);
-            return original;
-        }
-
-        else if(!items[index].getKey().equals(key)){
-            for(int i=0; i<hashMapSize; i++){
-                count2++;
-                if(count2>=hashMapSize){
-                    count2=0;
-                }
-                if(items[count2]==null){
-                    break;
-                }
-                if(count2==index){
-                    putFailureCount++;
-                    throw new RuntimeException("Double hashing failed to find a free position");
-                }
-            }
-
-            int c=1;
-            Collisions++;
-            for(int j=0; j<hashMapSize; j++){
-                count=((c*secondaryHash(key)%hashMapSize)+count);
-                totalCollisions++;
-
-                if(count>=hashMapSize){
-                    count=0;
-                }
-
-                if(c>maxCollisions){
-                    maxCollisions=j;
-                }
-
-                if(items[count]==null){
-                    items[count]=new HashMapNode<>(key, value);
-                    return null;
-                }
-
-                if(items[count].getKey().equals(key)){
-                    V original=items[count].getValue();
-                    items[count].setValue(value);
-                    return original;
-                }
-            }
-            c++;
-        }
-        return null;
     }
 
     public V get(K key){

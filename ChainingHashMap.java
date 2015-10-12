@@ -18,6 +18,14 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
         this.items=(ChainingHashMapNode<K, V>[]) new ChainingHashMapNode[hashMapSize];
     }
 
+    // construct a HashMap with given capacity and given hash parameters
+    public ChainingHashMap(int hashMapSize, int multiplier, int modulus) {
+        this.hashMapSize=hashMapSize;
+        this.multiplier=multiplier;
+        this.modulus=modulus;
+        this.items=(ChainingHashMapNode<K, V>[]) new ChainingHashMapNode[hashMapSize];
+    }
+
     //hashing
     public int hash(K key){
         return (Math.abs(multiplier*key.hashCode())%modulus);
@@ -81,15 +89,57 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
         return keys;
     }
     public V put(K key, V value){
-        if(hashMapSize==0){
-            this.hashMapSize=1;
-        }
-
-        int index=hash(key) % hashMapSize;
+        int index=hash(key)%hashMapSize;
+        int count=index;
+        int count2=count;
 
         if(items[index]==null){
             items[index]=new ChainingHashMapNode<>(key, value);
             return null;
+        }
+
+        if(items[index].getKey().equals(key)){
+            V origin=items[index].getValue();
+            ChainingHashMapNode<K, V> currentNode=items[index];
+
+            while(currentNode.getNext()!=null){
+                currentNode=currentNode.getNext();
+            }
+
+            currentNode.setNext(new ChainingHashMapNode<>(key, value));
+            return origin;
+        }
+
+        if(!items[index].getKey().equals(key)){
+            for(int i=0; i<hashMapSize; i++){
+                count++;
+                if(count>=hashMapSize){
+                    count=0;
+                }
+
+                if(items[count] !=null && items[count].getKey().equals(key)){
+                    V origin=items[index].getValue();
+                    ChainingHashMapNode<K, V> currentNode=items[index];
+
+                    while(currentNode.getNext()!=null){
+                        currentNode=currentNode.getNext();
+                    }
+
+                    currentNode.setNext(new ChainingHashMapNode<>(key, value));
+                    return origin;
+                }
+            }
+        }
+
+        for(int i=0; i<hashMapSize; i++){
+            count2++;
+            if(count2>=hashMapSize){
+                count2=0;
+            }
+            if(items[count2]==null){
+                items[count2]=new ChainingHashMapNode<K, V>(key, value);
+                return null;
+            }
         }
         return null;
     }
@@ -101,7 +151,11 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
         if(entry==null){
             return null;
         }
-        //do a check to see if the key is the one we're looking for
+
+        if(entry.getKey().equals(key)){
+            return entry.getValue();
+        }
+        //do a check to see if the key is the one we're looking for and keep going until found or back to index 0
         if(!entry.key.equals(key)){
             for(int i=0; i<hashMapSize; i++){
                 count++;
@@ -113,7 +167,7 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
                 }
             }
         }
-        return entry.getValue();
+        return null;
     }
     public V remove(K key){
         int index = hash(key) % hashMapSize;

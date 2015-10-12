@@ -8,6 +8,7 @@ public class ChainingHashMapNode<K extends Comparable<K>, V> {
 
     //construction
     public ChainingHashMapNode(K key, V value){
+        this.next=null;
         this.key=key;
         this.value=value;
     }
@@ -22,7 +23,7 @@ public class ChainingHashMapNode<K extends Comparable<K>, V> {
     }
 
     public ChainingHashMapNode<K, V> getNext(){
-        return null;
+        return this.next;
     }
 
     //set methods
