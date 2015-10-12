@@ -39,8 +39,37 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
 
     // interface
     public int[] getFullestBuckets(){
-        //TODO: this
-        return null;
+        int maxNum=0;
+        int nodeMax=0;
+
+        for(int i=0; i<hashMapSize; i++){
+            ChainingHashMapNode<K, V> current=items[i];
+            int currentSize=0;
+            while(current!=null){
+                currentSize++;
+                current=current.getNext();
+            }
+            if(currentSize>maxNum){
+                maxNum=currentSize;
+            }
+        }
+
+        for(int i=0; i<hashMapSize; i++){
+            ChainingHashMapNode<K, V> current=items[i];
+            int currentSize=0;
+
+            while(current!=null){
+                currentSize++;
+                current=current.getNext();
+            }
+
+            if(currentSize==maxNum){
+                nodeMax++;
+            }
+        }
+
+        int[] fullestBuckets={maxNum,nodeMax};
+        return fullestBuckets;
     }
     public List<K> keys(){
         List<K> keys = new ArrayList<>();
@@ -57,8 +86,6 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
         }
 
         int index=hash(key) % hashMapSize;
-        int count=index;
-        int count2=index;
 
         if(items[index]==null){
             items[index]=new ChainingHashMapNode<>(key, value);
