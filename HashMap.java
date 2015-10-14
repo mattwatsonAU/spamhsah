@@ -7,9 +7,9 @@ public class HashMap<K extends Comparable<K>, V> {
     public int modulus;
     public int multiplier;
     public int hashMapSize;
-    private int Collisions=0;
     private int totalCollisions=0;
     private int maxCollisions=0;
+    private int putCollisions=0;
 
     // construct a HashMap with 4000 places and given hash parameters
     public HashMap(int multiplier, int modulus){
@@ -58,45 +58,36 @@ public class HashMap<K extends Comparable<K>, V> {
     }
 
     public V put(K key, V value){
-        int index = hash(key) % hashMapSize;
-        int count = index;
-
-        if(items[index] == null){
-            items[index] = new HashMapNode<>(key, value);
-            return null;
-        }
-
-        if(items[count].getKey().equals(key)){
-            V original = items[count].getValue();
-            items[count].setValue(value);
-            return original;
-        }
-
-        else if(!items[index].getKey().equals(key)){
-            Collisions++;
-            for(int i=0; i<hashMapSize; i++){
-                count++;
-                totalCollisions++;
-                if(count>=hashMapSize){
-                    count = 0;
-                }
-
-                if(i>maxCollisions){
-                    maxCollisions=i;
-                }
-
-                if(items[count]==null){
-                    items[count] = new HashMapNode<>(key, value);
-                    return null;
-                }
-
-                if(items[count].getKey().equals(key)){
-                    V original= items[count].getValue();
-                    items[count].setValue(value);
-                    return original;
+        for(int i=0; i<hashMapSize; i++){
+            if(items[i]!=null){
+                if(items[i].getKey().equals(key)){
+                    V originalVal=items[i].getValue();
+                    items[i].setValue(value);
+                    return originalVal;
                 }
             }
         }
+
+        int hash=hash(key);
+        hash%=hashMapSize;
+        final int initHash=hash;
+        int index=0;
+        int collisions=0;
+        while(items[hash]!=null && items[hash].getKey()!=null){
+            if(index==0){
+                putCollisions++;
+            }
+            collisions++;
+            totalCollisions++;
+            hash++;
+            hash%=hashMapSize;
+            index++;
+        }
+
+        if(collisions>maxCollisions){
+            maxCollisions=collisions;
+        }
+        items[hash]=new HashMapNode<K, V>(key, value);
         return null;
     }
 
@@ -155,8 +146,8 @@ public class HashMap<K extends Comparable<K>, V> {
         return null;
     }
 
-    public int Collisions(){
-        return this.Collisions;
+    public int putCollisions(){
+        return this.putCollisions;
     }
 
     public int totalCollisions(){
@@ -168,7 +159,7 @@ public class HashMap<K extends Comparable<K>, V> {
     }
 
     public void resetStatistics(){
-        Collisions=0;
+        putCollisions=0;
         totalCollisions=0;
         maxCollisions=0;
     }

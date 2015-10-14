@@ -15,7 +15,7 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
     private int putFailures=0;
     private int totalCollisions=0;
     private int maxCollisions=0;
-    HashMapNode defunctNode=new HashMapNode<>(null, null);
+    HashMapNode defunctPosition=new HashMapNode<>(null, null);
 
     // updated construction
     // construct a HashMap with 4000 places and given hash parameters
@@ -61,7 +61,7 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
     public List<K> keys(){
         List<K> keys=new ArrayList<>();
         for(HashMapNode<K, V> entry : items){
-            if(entry!=null){
+            if(entry!=null && entry.getKey()!=null){
                 keys.add(entry.key);
             }
         }
@@ -81,8 +81,8 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
 
         int hash=hash(key);
         hash%=hashMapSize;
-        int stepSize=secondaryHash(key);
-        final int iniHash=hash;
+        int hash2=secondaryHash(key);
+        final int initHash=hash;
         int index=0;
         int collisions=0;
         while(items[hash]!=null && items[hash].getKey()!=null){
@@ -91,9 +91,9 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
             }
             collisions++;
             totalCollisions++;
-            hash+=stepSize;
+            hash+=hash2;
             hash%=hashMapSize;
-            if(hash=iniHash){
+            if(hash==initHash){
                 putFailures++;
                 throw new RuntimeException("Double Hashing failed to find a free position.");
             }
@@ -109,62 +109,37 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
     }
 
     public V get(K key){
-        int index=secondaryHash(key)%hashMapSize;
-        HashMapNode<K, V> entry=items[index];
-        int count=index;
-        if(entry==null){
-            return null;
-        }
-        //do a check to see if the key is the one we're looking for
-        if(!entry.key.equals(key)){
-            for(int i=0; i<hashMapSize; i++){
-                count++;
-                if(count>=hashMapSize){
-                    count=0;
-                }
-                if(items[count].getKey().equals(key)){
-                    return items[count].getValue();
-                }
+        int indexHash=hash(key);
+        int hash2=secondaryHash(key);
+        while(items[indexHash]!=null){
+            if(items[indexHash].getKey()==key){
+                return items[indexHash].getValue();
             }
+            indexHash+=hash2;
+            indexHash%=hashMapSize;
         }
-        return entry.getValue();
+        return null;
 
     }
 
     public V remove(K key){
-        int index=secondaryHash(key)%hashMapSize;
-        int count=index;
-        HashMapNode<K, V> entry=items[index];
-
-        if(entry==null){
-            return null;
-        }
-
-        if(entry.key.equals(key)){
-            V tmp=entry.value;
-            items[index]=null;
-            return tmp;
-        }
-
-        if(!entry.key.equals(key)){
-            for(int i=0;i<hashMapSize; i++){
-                count++;
-                if(count>=hashMapSize){
-                    count=0;
-                }
-                if(items[count].getKey().equals(key)){
-                    V tmp=items[count].getValue();
-                    items[count]=null;
-                    return tmp;
-                }
-
+        int indexHash=hash(key);
+        int hash2=secondaryHash(key);
+        while(items[indexHash]!=null){
+            if(items[indexHash].getKey()==key){
+                V originalValue=items[indexHash].getValue();
+                items[indexHash]=defunctPosition;
+                return originalValue;
             }
+            indexHash+=hash2;
+            indexHash%=hashMapSize;
         }
         return null;
+
     }
 
-    public int Collisions(){
-        return this.Collisions;
+    public int putCollisions(){
+        return this.putCollisions;
     }
 
     public int totalCollisions(){
@@ -180,7 +155,7 @@ public class DoubleHashMap<K extends Comparable<K>, V> {
     }
 
     public void resetStatistics() {
-        Collisions = 0;
+        putCollisions = 0;
         totalCollisions = 0;
         maxCollisions = 0;
     }

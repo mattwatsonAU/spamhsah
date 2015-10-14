@@ -117,7 +117,7 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
                     count=0;
                 }
 
-                if(items[count] !=null && items[count].getKey().equals(key)){
+                if (items[count]!=null && items[count].getKey().equals(key)){
                     V origin=items[index].getValue();
                     ChainingHashMapNode<K, V> currentNode=items[index];
 
@@ -145,8 +145,9 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
     }
     public V get(K key){
         int index=hash(key)%hashMapSize;
-        ChainingHashMapNode<K, V> entry=items[index];
         int count=index;
+        ChainingHashMapNode<K, V> entry=items[index];
+
 
         if(entry==null){
             return null;

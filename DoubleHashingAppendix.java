@@ -56,42 +56,42 @@ public class DoubleHashingAppendix {
 
     private static void printCollisionStatsSummary(){
         System.out.println("**COLLISION STATS: (1,4271,1,2000)**");
-        System.out.println("Put Collisions: " + DoubleHashMapA.Collisions());
+        System.out.println("Put Collisions: " + DoubleHashMapA.putCollisions());
         System.out.println("Total Collisions: " + DoubleHashMapA.totalCollisions());
         System.out.println("Maximum Collisions: " + DoubleHashMapA.maxCollisions());
         System.out.println("Put Failures: " + DoubleHashMapA.putFailures());
         System.out.println("");
 
         System.out.println("**COLLISION STATS: (10,4271,223,2000)**");
-        System.out.println("Put Collisions: " + DoubleHashMapB.Collisions() );
+        System.out.println("Put Collisions: " + DoubleHashMapB.putCollisions() );
         System.out.println("Total Collisions: " + DoubleHashMapB.totalCollisions());
         System.out.println("Maximum Collisions: " + DoubleHashMapB.maxCollisions());
         System.out.println("Put Failures: " + DoubleHashMapB.putFailures());
         System.out.println("");
 
         System.out.println("**COLLISION STATS: (1,4271,647,2000)**");
-        System.out.println("Put Collisions: " + DoubleHashMapC.Collisions() );
+        System.out.println("Put Collisions: " + DoubleHashMapC.putCollisions() );
         System.out.println("Total Collisions: " + DoubleHashMapC.totalCollisions());
         System.out.println("Maximum Collisions: " + DoubleHashMapC.maxCollisions());
         System.out.println("Put Failures: " + DoubleHashMapC.putFailures());
         System.out.println("");
 
         System.out.println("**COLLISION STATS: (1,4271,1,4000)**");
-        System.out.println("Put Collisions: " + DoubleHashMapD.Collisions());
+        System.out.println("Put Collisions: " + DoubleHashMapD.putCollisions());
         System.out.println("Total Collisions: " + DoubleHashMapD.totalCollisions());
         System.out.println("Maximum Collisions: " + DoubleHashMapD.maxCollisions());
         System.out.println("Put Failures: " + DoubleHashMapD.putFailures());
         System.out.println("");
 
         System.out.println("**COLLISION STATS: (1,4271,223, 4000)**");
-        System.out.println("Put Collisions: " + DoubleHashMapE.Collisions() );
+        System.out.println("Put Collisions: " + DoubleHashMapE.putCollisions() );
         System.out.println("Total Collisions: " + DoubleHashMapE.totalCollisions());
         System.out.println("Maximum Collisions: " + DoubleHashMapE.maxCollisions());
         System.out.println("Put Failures: " + DoubleHashMapE.putFailures());
         System.out.println("");
 
         System.out.println("**COLLISION STATS: (1,4271,647,4000)**");
-        System.out.println("Put Collisions: " + DoubleHashMapF.Collisions() );
+        System.out.println("Put Collisions: " + DoubleHashMapF.putcCollisions() );
         System.out.println("Total Collisions: " + DoubleHashMapF.totalCollisions());
         System.out.println("Maximum Collisions: " + DoubleHashMapF.maxCollisions());
         System.out.println("Put Failures: " + DoubleHashMapF.putFailures());
