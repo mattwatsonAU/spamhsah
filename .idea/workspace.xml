@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="da1171d8-1518-4647-b1bb-e846b1575690" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ChainingHashMap.java" afterPath="$PROJECT_DIR$/ChainingHashMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HashMap.java" afterPath="$PROJECT_DIR$/HashMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="spamhsah.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/HashMap.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="109" column="75" selection-start-line="109" selection-start-column="75" selection-end-line="109" selection-end-column="75" />
+              <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#999#1000#0" expanded="true" />
@@ -61,8 +59,8 @@
       <file leaf-file-name="ChainingHashMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ChainingHashMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68413794">
-              <caret line="165" column="75" selection-start-line="165" selection-start-column="75" selection-end-line="165" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.6896552">
+              <caret line="193" column="75" selection-start-line="193" selection-start-column="75" selection-end-line="193" selection-end-column="75" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -561,8 +559,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="204" column="26" selection-start-line="204" selection-start-column="26" selection-end-line="204" selection-end-column="26" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -650,8 +648,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="204" column="26" selection-start-line="204" selection-start-column="26" selection-end-line="204" selection-end-column="26" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -708,7 +706,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -784,8 +782,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="87" column="57" selection-start-line="87" selection-start-column="57" selection-end-line="87" selection-end-column="57" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -793,7 +791,7 @@
     <entry file="file://$PROJECT_DIR$/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="109" column="75" selection-start-line="109" selection-start-column="75" selection-end-line="109" selection-end-column="75" />
+          <caret line="109" column="74" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#999#1000#0" expanded="true" />
@@ -812,8 +810,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ChainingHashMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68413794">
-          <caret line="165" column="75" selection-start-line="165" selection-start-column="75" selection-end-line="165" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.6896552">
+          <caret line="193" column="75" selection-start-line="193" selection-start-column="75" selection-end-line="193" selection-end-column="75" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
