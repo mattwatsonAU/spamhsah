@@ -163,7 +163,7 @@ public class ChainingHashMap<K extends Comparable<K>, V> {
                 if(count>=hashMapSize){
                     count=0;
                 }
-                if(items[count].getKey().equals(key)){
+                if(items[count]!=null && items[count].getKey().equals(key)){
                     return items[count].getValue();
                 }
             }
