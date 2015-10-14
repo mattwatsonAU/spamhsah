@@ -107,7 +107,7 @@ public class HashMap<K extends Comparable<K>, V> {
                 if(count>=hashMapSize){
                     count=0;
                 }
-                if(items[count]!=null && items[count].getKey().equals(key)){
+                if(items[i]!=null && items[i].getKey().equals(key)){
                     return items[count].getValue();
                 }
             }
